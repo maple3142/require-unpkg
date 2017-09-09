@@ -7,7 +7,7 @@ require from [unpkg.com](https://unpkg.com/) in browser
 
 ```html
 <head>
-	<script src="https://unpkg.com/unpkg-require"></script>
+	<script src="https://unpkg.com/require-unpkg"></script>
 </head>
 <body>
 	<div id="jquery"></div>
