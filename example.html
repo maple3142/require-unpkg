@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script src="/dist/require.min.js"></script>
+	<title>Example</title>
+</head>
+
+<body>
+	<div id="jquery"></div>
+	<div id="vue">{{message}}</div>
+	<script>
+		//with es7 async/await:
+		(async function () {
+			let $ = await require('jquery')
+			$('#jquery').text('jQuery')
+		})()
+
+		//with Promise+Array Destructuring:
+		require(['jquery', 'vue']).then(([$, Vue]) => {
+			new Vue({
+				el: '#vue',
+				data: {
+					message: $.fn.jquery //jQuery version
+				}
+			})
+		})
+	</script>
+</body>
+
+</html>
