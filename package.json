@@ -1,0 +1,23 @@
+{
+	"name": "require",
+	"version": "1.0.0",
+	"main": "index.js",
+	"license": "MIT",
+	"devDependencies": {
+		"babel-core": "^6.26.0",
+		"babel-loader": "^7.1.2",
+		"babel-preset-es2015": "^6.24.1",
+		"babel-preset-stage-3": "^6.24.1",
+		"cross-env": "^5.0.5",
+		"webpack": "^3.5.6"
+	},
+	"browser": "dist/require.min.js",
+	"dependencies": {
+		"axios": "^0.16.2"
+	},
+	"scripts": {
+		"build": "cross-env NODE_ENV=development webpack",
+		"prod": "cross-env NODE_ENV=production webpack",
+		"all": "cross-env NODE_ENV=development webpack && cross-env NODE_ENV=production webpack"
+	}
+}
