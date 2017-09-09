@@ -4,6 +4,7 @@ require from [unpkg.com](https://unpkg.com/) in browser
 --------------------------------------------------------
 
 ### [Example](https://rawgit.com/maple3142/require-unpkg/master/test.html)
+### [Example(codepen)](https://codepen.io/maple3142/pen/qXebVQ)
 
 ```html
 <head>
