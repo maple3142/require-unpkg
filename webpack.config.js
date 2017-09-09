@@ -6,7 +6,9 @@ module.exports = {
 	entry: path.join(__dirname, 'src', 'index.js'),
 	output: {
 		filename: prod ? 'require.min.js' : 'require.js',
-		path: path.join(__dirname, 'dist')
+		path: path.join(__dirname, 'dist'),
+		libraryTarget: 'umd',
+		library: 'require'
 	},
 	module: {
 		loaders: [

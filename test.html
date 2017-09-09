@@ -5,18 +5,23 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+	<!--babel-->
+	<script src="https://unpkg.com/babel-standalone/babel.min.js"></script>
+	<script src="https://unpkg.com/babel-polyfill/browser.js"></script>
+
 	<script src="https://unpkg.com/require-unpkg"></script>
 	<title>Example</title>
 </head>
 
 <body>
 	<div id="jquery"></div>
-	<div id="vue">{{message}}</div>
-	<script>
+	<div id="vue">jQuery version: {{ver}}</div>
+	<script type="text/babel" data-presets="es2015,stage-3">
 		//with es7 async/await:
 		(async function () {
 			let $ = await require('jquery')
-			$('#jquery').text('jQuery')
+			$('#jquery').text('hello world')
 		})()
 
 		//with Promise+Array Destructuring:
@@ -24,7 +29,7 @@
 			new Vue({
 				el: '#vue',
 				data: {
-					message: $.fn.jquery //jQuery version
+					ver: $.fn.jquery
 				}
 			})
 		})
