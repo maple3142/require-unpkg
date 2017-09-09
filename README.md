@@ -2,6 +2,9 @@ unpkg-require
 =============
 require from [unpkg.com](https://unpkg.com/) in browser
 --------------------------------------------------------
+
+[example.html](https://rawgit.com/maple3142/require-unpkg/master/example.html)
+
 ```html
 <head>
 	<script src="https://unpkg.com/unpkg-require"></script>
