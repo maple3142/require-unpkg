@@ -1,4 +1,4 @@
-unpkg-require
+require-unpkg
 =============
 require from [unpkg.com](https://unpkg.com/) in browser
 --------------------------------------------------------
