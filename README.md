@@ -32,3 +32,8 @@ require(['jquery', 'vue']).then(([$, Vue]) => {
 	})
 })
 ```
+
+extra
+------
+* `require._require` only require single module only  ex: `require._require('jquery')`
+* `require._get` provide simple xhr `GET` function ex:`require._get(url)`
