@@ -1,6 +1,6 @@
 {
 	"name": "require-unpkg",
-	"version": "0.2.1",
+	"version": "0.3.0",
 	"main": "dist/require.js",
 	"browser": "dist/require.min.js",
 	"license": "MIT",
