@@ -7,30 +7,51 @@ require from [unpkg.com](https://unpkg.com/) in browser
 ### [Example(codepen)](https://codepen.io/maple3142/pen/qXebVQ)
 
 ```html
-<head>
-	<script src="https://unpkg.com/require-unpkg"></script>
-</head>
-<body>
-	<div id="jquery"></div>
-	<div id="vue">{{message}}</div>
-</body>
-```
-```js
-//with es7 async/await:
-(async function () {
-	let $ = await require('jquery')
-	$('#jquery').text('jQuery')
-})()
+<!DOCTYPE html>
+<html>
 
-//with Promise+Array Destructuring:
-require(['jquery', 'vue']).then(([$, Vue]) => {
-	new Vue({
-		el: '#vue',
-		data: {
-			message: $.fn.jquery //jQuery version
-		}
-	})
-})
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <script src="dist/require.js"></script>
+  <!--cdn-->
+  <!--script src="https://unpkg.com/require-unpkg"></script-->
+  <title>Example</title>
+</head>
+
+<body>
+  <div id="jquery"></div>
+  <div id="vue">
+    <input type="text" v-model="input">
+  </div>
+  <script>
+    require.cache.expire = 100000; //set cache time (DONT SET TO 0), default: 24 hours
+
+    //with es7 async/await:
+    (async function () {
+      let $ = await require('jquery')
+      $('#jquery').text('jquery hello world')
+    })()
+
+    //with Promise+Array Destructuring:
+    require(['vue','vuejs-storage']).then(([Vue,vuejsStorage]) => {
+      Vue.use(vuejsStorage)
+      new Vue({
+        el: '#vue',
+        storage: {
+          data: {
+            input: ''
+          },
+          namespace: 'test'
+        }
+      })
+    })
+  </script>
+</body>
+
+</html>
 ```
 
 extra

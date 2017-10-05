@@ -6,30 +6,36 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-	<!--babel-->
-	<script src="https://unpkg.com/babel-standalone/babel.min.js"></script>
-	<script src="https://unpkg.com/babel-polyfill/browser.js"></script>
-
-	<script src="https://unpkg.com/require-unpkg"></script>
+	<script src="dist/require.js"></script>
+	<!--cdn-->
+	<!--script src="https://unpkg.com/require-unpkg"></script-->
 	<title>Example</title>
 </head>
 
 <body>
 	<div id="jquery"></div>
-	<div id="vue">jQuery version: {{ver}}</div>
-	<script type="text/babel" data-presets="es2015,stage-3">
+	<div id="vue">
+		<input type="text" v-model="input">
+	</div>
+	<script>
+		require.cache.expire = 100000; //set cache time (DONT SET TO 0), default: 24 hours
+
 		//with es7 async/await:
 		(async function () {
 			let $ = await require('jquery')
-			$('#jquery').text('hello world')
+			$('#jquery').text('jquery hello world')
 		})()
 
 		//with Promise+Array Destructuring:
-		require(['jquery', 'vue']).then(([$, Vue]) => {
+		require(['vue','vuejs-storage']).then(([Vue,vuejsStorage]) => {
+			Vue.use(vuejsStorage)
 			new Vue({
 				el: '#vue',
-				data: {
-					ver: $.fn.jquery
+				storage: {
+					data: {
+						input: ''
+					},
+					namespace: 'test'
 				}
 			})
 		})

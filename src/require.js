@@ -1,29 +1,33 @@
-//module cache
-const cache = {}
+import cache from './cache'
 
 //internal get
 function _get(url) {
+	console.info(`GET ${url}`)
 	return new Promise((res, rej) => {
-		let xhr = new XMLHttpRequest()
+		let xhr = new require.XMLHttpRequest()
+
+		xhr.open('GET', url)
 
 		xhr.onload = () => res(xhr.responseText)
 		xhr.onerror = () => rej(xhr.statusText)
 
-		xhr.open('GET', url)
+		xhr.setRequestHeader("Cache-Control", "no-cache")
+
 		xhr.send()
 	})
 }
 
 //internal require
 async function _require(pkg) {
-	if (!(pkg in cache)) {
-		let exports = {}
-		let module = { exports }
-		let js = await _get(`https://unpkg.com/${pkg}`)
-		eval(js)
-		cache[pkg] = module
+	pkg = pkg.toLowerCase()
+	if (!cache.has(pkg)) {
+		let js = await _get(`https://unpkg.com/${pkg}?time=${Date.now()}`)
+		cache.set(pkg, js)
 	}
-	return cache[pkg].exports
+	let exports = {}
+	let module = { exports }
+	eval(cache.get(pkg))
+	return module.exports
 }
 
 /**
@@ -41,6 +45,11 @@ async function require(pkg) {
 	}
 }
 
+if (typeof window !== 'undefined') {
+	require.XMLHttpRequest = window.XMLHttpRequest
+}
+
+require.cache = cache
 require._require = _require
 require._get = _get
 
