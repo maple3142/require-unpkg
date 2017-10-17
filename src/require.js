@@ -2,7 +2,6 @@ import cache from './cache'
 
 //internal get
 function _get(url) {
-	console.info(`GET ${url}`)
 	return new Promise((res, rej) => {
 		let xhr = new require.XMLHttpRequest()
 
@@ -24,9 +23,9 @@ async function _require(pkg) {
 		let js = await _get(`https://unpkg.com/${pkg}?time=${Date.now()}`)
 		cache.set(pkg, js)
 	}
-	let exports = {}
-	let module = { exports }
-	eval(cache.get(pkg))
+	let module = { exports: {} }
+	let code = new Function(['module', 'exports'], cache.get(pkg))
+	code.apply(null, [module, module.exports])
 	return module.exports
 }
 

@@ -27,7 +27,7 @@
 		})()
 
 		//with Promise+Array Destructuring:
-		require(['vue','vuejs-storage']).then(([Vue,vuejsStorage]) => {
+		require(['vue', 'vuejs-storage']).then(([Vue, vuejsStorage]) => {
 			Vue.use(vuejsStorage)
 			new Vue({
 				el: '#vue',
@@ -39,6 +39,13 @@
 				}
 			})
 		})
+
+		window.ok = true
+	</script>
+	<script>
+		if (!window.ok) {
+			alert('Please use a browser with async/await support')
+		}
 	</script>
 </body>
 

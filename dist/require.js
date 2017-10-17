@@ -775,7 +775,7 @@ var _promise2 = _interopRequireDefault(_promise);
 //internal require
 var _require = function () {
 	var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(pkg) {
-		var js, exports, module;
+		var js, module, code;
 		return _regenerator2.default.wrap(function _callee$(_context) {
 			while (1) {
 				switch (_context.prev = _context.next) {
@@ -796,10 +796,10 @@ var _require = function () {
 						_cache2.default.set(pkg, js);
 
 					case 6:
-						exports = {};
-						module = { exports: exports };
+						module = { exports: {} };
+						code = new Function(['module', 'exports'], _cache2.default.get(pkg));
 
-						eval(_cache2.default.get(pkg));
+						code.apply(null, [module, module.exports]);
 						return _context.abrupt('return', module.exports);
 
 					case 10:
@@ -872,7 +872,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 //internal get
 function _get(url) {
-	console.info('GET ' + url);
 	return new _promise2.default(function (res, rej) {
 		var xhr = new _require2.XMLHttpRequest();
 
