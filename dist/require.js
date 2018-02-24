@@ -1,10 +1,27 @@
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
 	typeof define === 'function' && define.amd ? define(factory) :
-	(global.require = factory());
+	(global.requireUnpkg = factory());
 }(this, (function () { 'use strict';
 
-//module cache
+var localStorage;
+try {
+	localStorage = window.localStorage;
+} catch (e) {
+	//For node environment
+	var obj = {};
+	localStorage = {
+		setItem: function setItem(k, v) {
+			obj[k] = v;
+		},
+		getItem: function getItem(k) {
+			return obj[k] || null;
+		},
+		removeItem: function removeItem(k) {
+			delete obj[k];
+		}
+	};
+}
 var ns = 'require-unpkg-cache';
 var cache = {
 	obj: {},
@@ -112,17 +129,6 @@ require.cache = cache;
 require._require = _require;
 require._get = _get;
 
-
-
-var require$2 = Object.freeze({
-	default: require
-});
-
-var require$$0 = ( require$2 && require ) || require$2;
-
-//entry point
-var src = require$$0.default;
-
-return src;
+return require;
 
 })));

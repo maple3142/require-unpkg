@@ -1,4 +1,5 @@
 module.exports = {
 	format: ['umd', 'umd-min'],
-	moduleName: 'require'
+	input: ['src/require.js'],
+	filename: 'require.js'
 }

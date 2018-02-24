@@ -1,4 +1,21 @@
-//module cache
+let localStorage
+try {
+	localStorage = window.localStorage
+} catch (e) {
+	//For node environment
+	const obj = {}
+	localStorage = {
+		setItem(k, v) {
+			obj[k] = v
+		},
+		getItem(k) {
+			return obj[k] || null
+		},
+		removeItem(k) {
+			delete obj[k]
+		}
+	}
+}
 const ns = 'require-unpkg-cache'
 const cache = {
 	obj: {},
