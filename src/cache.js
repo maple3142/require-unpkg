@@ -1,7 +1,5 @@
 let localStorage
-try {
-	localStorage = window.localStorage
-} catch (e) {
+if (typeof window === 'undefined') {
 	//For node environment
 	const obj = {}
 	localStorage = {
@@ -15,6 +13,8 @@ try {
 			delete obj[k]
 		}
 	}
+} else {
+	localStorage = window.localStorage
 }
 const ns = 'require-unpkg-cache'
 const cache = {

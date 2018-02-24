@@ -1,13 +1,11 @@
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
 	typeof define === 'function' && define.amd ? define(factory) :
-	(global.requireUnpkg = factory());
+	(global.require = factory());
 }(this, (function () { 'use strict';
 
 var localStorage;
-try {
-	localStorage = window.localStorage;
-} catch (e) {
+if (typeof window === 'undefined') {
 	//For node environment
 	var obj = {};
 	localStorage = {
@@ -21,6 +19,8 @@ try {
 			delete obj[k];
 		}
 	};
+} else {
+	localStorage = window.localStorage;
 }
 var ns = 'require-unpkg-cache';
 var cache = {
