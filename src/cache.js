@@ -27,8 +27,7 @@ const cache = {
 if (localStorage.getItem(ns)) {
 	try {
 		cache.obj = JSON.parse(localStorage.getItem(ns))
-	}
-	catch (e) {
+	} catch (e) {
 		localStorage.removeItem(ns)
 	}
 }

@@ -10,7 +10,7 @@ function _get(url) {
 		xhr.onload = () => res(xhr.responseText)
 		xhr.onerror = () => rej(xhr.statusText)
 
-		xhr.setRequestHeader("Cache-Control", "no-cache")
+		xhr.setRequestHeader('Cache-Control', 'no-cache')
 
 		xhr.send()
 	})
@@ -36,8 +36,7 @@ async function _require(pkg) {
  * @return {Promise<Object>|Promise<Object[]>} return promise with module or array of module
  */
 async function require(pkg) {
-	if (!Array.isArray(pkg))
-		return await _require(pkg)
+	if (!Array.isArray(pkg)) return await _require(pkg)
 	else {
 		let pms = pkg.map(p => _require(p))
 		return await Promise.all(pms)
