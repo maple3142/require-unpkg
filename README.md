@@ -1,9 +1,11 @@
-require-unpkg
-=============
-require from [unpkg.com](https://unpkg.com/) in browser
---------------------------------------------------------
+# require-unpkg
+
+[![Build Status](https://travis-ci.org/maple3142/require-unpkg.svg?branch=master)](https://travis-ci.org/maple3142/require-unpkg)
+
+## require from [unpkg.com](https://unpkg.com/) in browser
 
 ### [Example](https://rawgit.com/maple3142/require-unpkg/master/test.html)
+
 ### [Example(codepen)](https://codepen.io/maple3142/pen/qXebVQ)
 
 ```html
@@ -54,7 +56,25 @@ require from [unpkg.com](https://unpkg.com/) in browser
 </html>
 ```
 
-extra
-------
-* `require._require` only require single module only  ex: `require._require('jquery')`
-* `require._get` provide simple xhr `GET` function ex:`require._get(url)`
+## Extra
+
+### \_require
+
+`require._require` only require single module only ex: `require._require('jquery')`
+
+### \_get
+
+`require._get` provide simple xhr `GET` function ex:`require._get(url)`
+
+### node.js
+
+To use in node.js environment, you must set
+
+```javascript
+const urequire = require('unpkg-require')
+urequire.XMLHttpRequest = XHR_POLYFILL //like xhr2...
+
+urequire('lodash').then(_ => {})
+```
+
+~~But I don't know why to require unpkg instead of `node_modules`~~
