@@ -1,5 +1,7 @@
 # require-unpkg
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/maple3142/require-unpkg.svg)](https://greenkeeper.io/)
+
 [![Build Status](https://travis-ci.org/maple3142/require-unpkg.svg?branch=master)](https://travis-ci.org/maple3142/require-unpkg)
 
 ## require from [unpkg.com](https://unpkg.com/) in browser
