@@ -1,4 +1,29 @@
 {
-	"presets": ["es2015", "stage-3"],
-	"plugins": [["transform-runtime", { "polyfill": false, "regenerator": true }]]
+	"env": {
+		"build": {
+			"presets": [
+				[
+					"env",
+					{
+						"modules": false,
+						"targets": {
+							"browsers": ["> 5%"]
+						}
+					}
+				]
+			]
+		},
+		"test": {
+			"presets": [
+				[
+					"env",
+					{
+						"targets": {
+							"browsers": ["> 5%"]
+						}
+					}
+				]
+			]
+		}
+	}
 }
