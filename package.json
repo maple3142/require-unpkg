@@ -13,7 +13,7 @@
 		"bili": "^3.0.6",
 		"cross-env": "^5.1.4",
 		"mocha": "^5.0.1",
-		"xhr2": "^0.1.4"
+		"xhr2": "^0.2.0"
 	},
 	"scripts": {
 		"build": "cross-env BABEL_ENV=build bili",
